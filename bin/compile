@@ -70,6 +70,7 @@ ${ERLROOT}/Install -minimal /app/otp
 PATH=/app/otp/bin:$PATH
 export PATH
 
+cp /app/otp/bin/erl /app/bin/
 
 # Only needed erlang to build tsung. No need for rebar
 
