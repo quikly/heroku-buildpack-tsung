@@ -70,32 +70,6 @@ ${ERLROOT}/Install -minimal /app/otp
 PATH=/app/otp/bin:$PATH
 export PATH
 
-cp /app/otp/bin/erl /app/bin/
-
-# Only needed erlang to build tsung. No need for rebar
-
-# if [ ! -e "rebar" ]; then
-#   echo "-----> Installing Rebar from buildpack"
-#   cp ${bpdir}/opt/rebar ./
-# fi
-#
-# echo "-----> Building with Rebar"
-# unset GIT_DIR
-# ./rebar get-deps compile 2>&1 | sed -u 's/^/       /'
-# if [ ${PIPESTATUS[0]} -ne 0 ]; then
-#   echo "-----> Build failed"
-#   exit 1
-# fi
-#
-# if [ -f ${bpdir}/opt/otp.sh ]; then
-#   mkdir -p ${PROFILE}
-#   cp ${bpdir}/opt/otp.sh ${PROFILE}
-# fi
-#
-# echo "-----> Build succeeded"
-
-# Finished getting erlang
-
 function indent() {
   c='s/^/       /'
   case $(uname) in
@@ -149,13 +123,20 @@ echo "-----> Installing with make install"
 
 make install 2>&1 | indent
 
+
 echo "-----> Tsung installed"
 
-echo "-----> ls /app"
+cp /app/otp/bin/erl /app/bin/erl
+
+echo "-----> ls /"
 ls /app
+
+echo "-----> ls /app/bin"
+ls /app/bin
 
 echo "-----> ls /app/otp"
 ls /app/otp
 
 echo "-----> ls /app/otp/bin"
 ls /app/otp/bin
+
