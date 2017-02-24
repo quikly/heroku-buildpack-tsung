@@ -46,7 +46,8 @@ curl -sO ${TOOLKIT_URL}
 echo "Download $toolkit_file_name done"
 tar zxf $toolkit_file_name
 cd Template-Toolkit-2.26
-perl Makefile.PL TT_ACCEPT=y
+
+perl Makefile.PL TT_ACCEPT=y PREFIX=${build}
 make
 make install
 echo "-----> Template Toolkit install done"
