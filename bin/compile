@@ -35,7 +35,7 @@ cache=$(cd "$2/" && pwd)
 test -z ${cache} && exit
 
 # install Template Toolkit
-toolkit_file_name="Template-Toolkit-2.26"
+toolkit_file_name="Template-Toolkit-3.006"
 TOOLKIT_URL="http://www.cpan.org/modules/by-module/Template/${toolkit_file_name}.tar.gz"
 
 echo "-----> Download $toolkit_file_name"
@@ -104,7 +104,7 @@ mkdir -p ${TSUNG_ROOT}
 echo "-----> Downloading Tsung"
 cd $cache
 
-DEFAULT_TSUNG_VERSION="1.6.0"
+DEFAULT_TSUNG_VERSION="1.7.0"
 if [ -f ${build}/.preferred_tsung_version ]; then
     TSUNG_VERSION=$(cat ${build}/.preferred_tsung_version)
 fi
