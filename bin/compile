@@ -53,7 +53,14 @@ make install
 echo "-----> Template Toolkit install done"
 
 # Start getting erlang
-OTP_TARBALL_URL="https://svn.marco-gatti.com/heroku/heroku-18/OTP-22.2.7.tgz"
+DEFAULT_OTP_VERSION="master"
+if [ -f ${build}/.preferred_otp_version ]; then
+    OTP_VERSION=$(cat ${build}/.preferred_otp_version)
+fi
+ver="OTP-22.2.7"
+tarball=${ver}.tgz
+
+OTP_TARBALL_URL="https://svn.marco-gatti.com/heroku/heroku-18/${tarball}"
 ERLROOT=${build}/otp
 PROFILE=${build}/.profile.d
 
@@ -73,7 +80,7 @@ echo "-----> Using Erlang/OTP $ver"
 
 echo "-------> Unpacking Erlang/OTP $ver"
 mkdir -p ${ERLROOT}
-tar zxf ${cache}/${tarball} -C ${ERLROOT}
+tar zxf ${cache}/${tarball} -C ${ERLROOT} --strip-components=2
 echo "-------> Installing Erlang/OTP $ver"
 ln -s ${ERLROOT} /app/otp
 ${ERLROOT}/Install -minimal /app/otp
